@@ -1,0 +1,9 @@
+D:\projects\hexview\hexview\bin\Debug\hexview.exe
+D:\projects\hexview\hexview\bin\Debug\hexview.pdb
+D:\projects\hexview\hexview\obj\Debug\hexview.csprojAssemblyReference.cache
+D:\projects\hexview\hexview\obj\Debug\hexview.Form1.resources
+D:\projects\hexview\hexview\obj\Debug\hexview.Properties.Resources.resources
+D:\projects\hexview\hexview\obj\Debug\hexview.csproj.GenerateResource.cache
+D:\projects\hexview\hexview\obj\Debug\hexview.csproj.CoreCompileInputs.cache
+D:\projects\hexview\hexview\obj\Debug\hexview.exe
+D:\projects\hexview\hexview\obj\Debug\hexview.pdb
