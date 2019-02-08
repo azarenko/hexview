@@ -11,6 +11,8 @@ namespace hexview
 {
     public partial class Form1 : Form
     {
+        const int pointsize = 16;
+
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace hexview
             bitschema.SelectedIndex = 0;
         }
 
-        int[,] filedata = null; 
+        uint[,] filedata = null;
 
         private void view_Click(object sender, EventArgs e)
         {
@@ -48,13 +50,13 @@ namespace hexview
             float k = 0;
             switch (schemaByteSize)
             {
-                case 1:                    
-                    k = 0x00FFFFFF / 0xFF;
+                case 1:
+                    k = (float)0x00FFFFFF / (float)0x000000FF;
                     break;
-                case 2:                    
-                    k = 0x00FFFFFF / 0xFFFF;
+                case 2:
+                    k = 0x00FFFFFF / 0x0000FFFF;
                     break;
-                case 4:                    
+                case 4:
                     k = (float)0x00FFFFFF / (float)0xFFFFFFFF;
                     break;
             }
@@ -62,43 +64,70 @@ namespace hexview
             byte[] buffer = new byte[schemaByteSize];
 
             FileStream fs = new FileStream(filepath.Text, FileMode.Open);
-            filedata = new int[fs.Length / (16 * schemaByteSize), 16];
+            filedata = new uint[fs.Length / (16 * schemaByteSize), 16];
 
             while (fs.Position != fs.Length)
             {
                 long position = fs.Position;
                 fs.Read(buffer, 0, schemaByteSize);
-                int value = 0;
+                uint value = 0;
 
                 switch (schemaByteSize)
                 {
                     case 1:
-                        value = buffer[0];                        
+                        value = buffer[0];
                         break;
                     case 2:
-                        value = BitConverter.ToInt16(buffer, 0);                        
+                        value = BitConverter.ToUInt16(buffer, 0);
                         break;
                     case 4:
-                        value = BitConverter.ToInt32(buffer, 0);                        
+                        value = BitConverter.ToUInt32(buffer, 0);
                         break;
                 }
 
-                int x = (int)(position % (16 * schemaByteSize));
-                int y = (int)(position / (16 * schemaByteSize));
+                int x = (int)((position / schemaByteSize) % 16);
+                int y = (int)((position / schemaByteSize) / 16);
 
                 if (y < filedata.Length / 16)
                 {
-                    filedata[y, x] = (int)(value * k);
+                    filedata[y, x] = ~(uint)(value * k);
                 }
-            }            
+            }
 
             fs.Close();
             fs.Dispose();
+
+            int yLen = filedata.Length / 16;
+            Bitmap bitmap = new Bitmap(16 * pointsize, yLen * pointsize);
+            using (Graphics graphics = Graphics.FromImage(bitmap))
+            {
+                for (int x = 0; x < 16; x++)
+                    for (int y = 0; y < yLen; y++)
+                    {
+                        Rectangle ee = new Rectangle(x * pointsize, y * pointsize, pointsize, pointsize);
+                        using (SolidBrush b = new SolidBrush(Color.FromArgb((int)filedata[y, x])))
+                        {
+                            graphics.FillRectangle(b, ee);
+                        }
+                    }
+            }
+
+            pictureBox.Image = bitmap;
         }
 
-        private void pictureBox_Paint(object sender, PaintEventArgs e)
+        private void save_Click(object sender, EventArgs e)
         {
+            if (saveFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
 
+            try
+            {
+                pictureBox.Image.Save(saveFileDialog1.FileName);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
         }
     }
 }

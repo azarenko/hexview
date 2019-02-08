@@ -33,24 +33,28 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.bitschema = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.startaddress = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.view = new System.Windows.Forms.Button();
+            this.startaddress = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.bitschema = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.save = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -91,21 +95,21 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -124,7 +128,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox);
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 61);
             this.groupBox1.Name = "groupBox1";
@@ -133,8 +138,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "View";
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.save);
             this.groupBox2.Controls.Add(this.view);
             this.groupBox2.Controls.Add(this.startaddress);
             this.groupBox2.Controls.Add(this.label2);
@@ -148,24 +163,33 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
             // 
-            // pictureBox
+            // view
             // 
-            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox.Location = new System.Drawing.Point(3, 16);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(788, 434);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
+            this.view.Location = new System.Drawing.Point(387, 17);
+            this.view.Name = "view";
+            this.view.Size = new System.Drawing.Size(75, 23);
+            this.view.TabIndex = 4;
+            this.view.Text = "View";
+            this.view.UseVisualStyleBackColor = true;
+            this.view.Click += new System.EventHandler(this.view_Click);
             // 
-            // label1
+            // startaddress
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bit schema";
+            this.startaddress.Location = new System.Drawing.Point(281, 19);
+            this.startaddress.MaxLength = 10;
+            this.startaddress.Name = "startaddress";
+            this.startaddress.Size = new System.Drawing.Size(100, 20);
+            this.startaddress.TabIndex = 3;
+            this.startaddress.Text = "0000000";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(201, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Start address 0x";
             // 
             // bitschema
             // 
@@ -180,33 +204,42 @@
             this.bitschema.Size = new System.Drawing.Size(121, 21);
             this.bitschema.TabIndex = 1;
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(201, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Start address 0x";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Bit schema";
             // 
-            // startaddress
+            // panel1
             // 
-            this.startaddress.Location = new System.Drawing.Point(281, 19);
-            this.startaddress.MaxLength = 10;
-            this.startaddress.Name = "startaddress";
-            this.startaddress.Size = new System.Drawing.Size(100, 20);
-            this.startaddress.TabIndex = 3;
-            this.startaddress.Text = "0000000";
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBox);
+            this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(779, 422);
+            this.panel1.TabIndex = 1;
             // 
-            // view
+            // save
             // 
-            this.view.Location = new System.Drawing.Point(387, 17);
-            this.view.Name = "view";
-            this.view.Size = new System.Drawing.Size(75, 23);
-            this.view.TabIndex = 4;
-            this.view.Text = "View";
-            this.view.UseVisualStyleBackColor = true;
-            this.view.Click += new System.EventHandler(this.view_Click);
+            this.save.Location = new System.Drawing.Point(468, 17);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.TabIndex = 5;
+            this.save.Text = "Save";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "bmp";
+            this.saveFileDialog1.FileName = "View.bmp";
+            this.saveFileDialog1.Filter = "images|*.bmp";
             // 
             // Form1
             // 
@@ -225,10 +258,13 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,6 +289,9 @@
         private System.Windows.Forms.TextBox startaddress;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button view;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
